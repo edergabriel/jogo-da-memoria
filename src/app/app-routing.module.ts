@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { InitialComponent } from './pages/initial/initial.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: "",
+    component: InitialComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

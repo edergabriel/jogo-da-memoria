@@ -1,0 +1,9 @@
+<h1>Jogo da Memória</h1>
+
+
+<div class="cards" >
+    <button class="card" href="#" (click)="handleClick($event)" [attr.data-type]="position.type" *ngFor="let position of positions; index as i">
+      <div class="card__face card__face--front">{{ position.title }}</div>
+      <div class="card__face card__face--back"><div></div></div>
+    </button>
+</div>
