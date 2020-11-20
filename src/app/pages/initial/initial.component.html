@@ -1,9 +1,33 @@
 <h1>Jogo da Memória</h1>
 
+<h2>Uma versão do famoso jogo da memória</h2>
 
-<div class="cards" >
+<form>
+  <h3>Dificuldade</h3>
+  <label><input type="radio" name="level" value="10"> Fácil</label>
+  <label><input type="radio" name="level" value="30"> Médio</label>
+  <label><input type="radio" name="level" value="50"> Difícil</label>
+  <label><input type="radio" name="level" value="100"> Mestre</label>
+
+  <h3>Tipos de Cartas</h3>
+  <label><input type="radio" name="level" value="10"> Letras</label>
+  <label><input type="radio" name="level" value="30"> Números</label>
+
+  <button>Confirmar</button>
+</form>
+
+<div class="cards">
     <button class="card" href="#" (click)="handleClick($event)" [attr.data-type]="position.type" *ngFor="let position of positions; index as i">
       <div class="card__face card__face--front">{{ position.title }}</div>
       <div class="card__face card__face--back"><div></div></div>
     </button>
 </div>
+
+<div class="hud">
+  <div>
+    <span>{{ numberTouches }}</span> Toques
+  </div>
+  <div *ngIf="flgRecord">
+    <span>{{ record }}</span> Seu Recorde
+  </div>
+</div> 

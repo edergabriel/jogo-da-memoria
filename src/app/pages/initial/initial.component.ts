@@ -8,12 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class InitialComponent implements OnInit {
 
   constructor() { }
-  chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', '1', '2', '3', '#', '&', '?', '!', '%', 'W'];
+  chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+           'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 
+           'U', 'V', 'W', 'Y', 'X', 'Z', 'Ç', 'Ü', 'É', 'Ê', 
+           'À', 'Á', 'Í', 'Ô', 'Ó'];
   removeChars = []
   numberSelectChars = 0;
   openCard = false;
   validClick = 0; 
   positions;
+  numberTouches = 0;
+  record = 9999;
+  finishGame = false;
+  flgRecord = false;
   
   getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -71,13 +78,10 @@ export class InitialComponent implements OnInit {
   }
   
   handleClick(e) {
-    let numberTouches = 0;
-    let record = 9999;
-    let finishGame = false;
-    let flgRecord = false;
+
     console.log("12", this.validClick, e.currentTarget.classList.value.indexOf('finded') < 0, this.validClick < 2 && e.currentTarget.classList.value.indexOf('finded') < 0);
     if(this.validClick < 2 && e.currentTarget.classList.value.indexOf('finded') < 0) {
-      numberTouches = numberTouches + 1;
+      this.numberTouches = this.numberTouches + 1;
       this.validClick = this.validClick + 1;
       e.currentTarget.classList.toggle('is-flipped');
       
@@ -86,7 +90,7 @@ export class InitialComponent implements OnInit {
       } else {
         let element = document.querySelectorAll('.card.is-flipped:not(.finded)');
         let nodeSelected: any = 0;
-        console.log("teste")
+
         setTimeout(function() {
           Array.prototype.forEach.call( element, function( node ) {
             console.log(node.dataset, nodeSelected, element);
@@ -101,11 +105,11 @@ export class InitialComponent implements OnInit {
                 node.classList.add('finded')
                 nodeSelected.classList.add('finded')
                 if(document.querySelectorAll('.card.finded').length >= document.querySelectorAll('.card').length) {
-                  finishGame = true
-                  flgRecord = true
-                  console.log(numberTouches, record);
-                  if(numberTouches < record) {
-                    record = numberTouches;
+                  this.finishGame = true
+                  this.flgRecord = true
+                  console.log(this.numberTouches, this.record);
+                  if(this.numberTouches < this.record) {
+                    this.record = this.numberTouches;
                   }
                 }
               }
@@ -113,8 +117,8 @@ export class InitialComponent implements OnInit {
             }
           });
           this.openCard = false;
-          this.validClick = 0;
         }, 1000)
+        this.validClick = 0;
       }
     }
   }
