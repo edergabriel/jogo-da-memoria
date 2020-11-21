@@ -20,8 +20,8 @@ import { AdsenseModule } from 'ng2-adsense';
     FormsModule,
     ReactiveFormsModule,
     AdsenseModule.forRoot({
-      adClient: 'ca-pub-7640562161899788',
-      adSlot: 7259870550,
+      adClient: 'ca-pub-5612489584188449',
+      adSlot: 7956276830,
     }),
   ],
   providers: [],
