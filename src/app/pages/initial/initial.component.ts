@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-initial',
@@ -7,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InitialComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
+
   chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
            'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 
            'U', 'V', 'W', 'Y', 'X', 'Z', 'Ç', 'Ü', 'É', 'Ê', 
-           'À', 'Á', 'Í', 'Ô', 'Ó'];
+           'À', 'Á', 'Í', 'Ô', 'Ó', 'я', 'Ø', 'Ð', 'Þ', 'ک',
+           'Ћ'];
+  numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', 
+            '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', 
+            '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', 
+            '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', 
+            '51', '0'];
+  form: FormGroup;
   removeChars = []
   numberSelectChars = 0;
   openCard = false;
@@ -74,6 +84,10 @@ export class InitialComponent implements OnInit {
     console.log(this.positions);
   }
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      level: ['', Validators.required],
+      cards: ['', Validators.required],
+    });
     this.newGame()
   }
   
@@ -122,4 +136,8 @@ export class InitialComponent implements OnInit {
       }
     }
   }
+
+  onSubmit() {
+    console.log("onsubmit")
+  }  
 }
