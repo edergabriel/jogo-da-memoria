@@ -2,12 +2,12 @@
 
 <h2>Uma versão do famoso jogo da memória</h2>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="flgForm">
   <h3>Dificuldade</h3>
   <label><input type="radio" formControlName="level" name="level" value="10"> Fácil</label>
   <label><input type="radio" formControlName="level" name="level" value="30"> Médio</label>
   <label><input type="radio" formControlName="level" name="level" value="50"> Difícil</label>
-  <label><input type="radio" formControlName="level" name="level" value="100"> Mestre</label>
+  <!--<label><input type="radio" formControlName="level" name="level" value="100"> Mestre</label>-->
 
   <h3>Tipos de Cartas</h3>
   <label><input type="radio" formControlName="cards" name="cards" value="letters"> Letras</label>
@@ -15,7 +15,7 @@
   <br>
   <button type="submit">Confirmar</button>
 
-  <pre>{{ form | json }}</pre>
+  <!--<pre>{{ form.value | json }}</pre>-->
 </form>
 
 <div class="cards">
@@ -26,7 +26,7 @@
 </div>
 
 <div class="hud">
-  <div>
+  <div *ngIf="flgTouches">
     <span>{{ numberTouches }}</span> Toques
   </div>
   <div *ngIf="flgRecord">

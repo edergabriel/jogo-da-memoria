@@ -21,7 +21,10 @@ export class InitialComponent implements OnInit {
             '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', 
             '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', 
             '51', '0'];
-  form: FormGroup;
+  form: FormGroup = new FormGroup({
+    level: new FormControl([]),
+    cards: new FormControl([])
+  });
   removeChars = []
   numberSelectChars = 0;
   openCard = false;
@@ -31,6 +34,8 @@ export class InitialComponent implements OnInit {
   record = 9999;
   finishGame = false;
   flgRecord = false;
+  flgTouches = false;
+  flgForm = true;
   
   getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -74,21 +79,17 @@ export class InitialComponent implements OnInit {
     return array
   }
   
-  newGame() {
+  newGame(numberLevel) {
     this.removeChars = []
     this.numberSelectChars = 0;
     this.openCard = false;
     this.validClick = 0; 
-    this.positions = this.createPositions(30);
+    this.positions = this.createPositions(numberLevel);
     this.positions = this.shuffleArray(this.positions);
     console.log(this.positions);
   }
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      level: ['', Validators.required],
-      cards: ['', Validators.required],
-    });
-    this.newGame()
+
   }
   
   handleClick(e) {
@@ -119,8 +120,8 @@ export class InitialComponent implements OnInit {
                 node.classList.add('finded')
                 nodeSelected.classList.add('finded')
                 if(document.querySelectorAll('.card.finded').length >= document.querySelectorAll('.card').length) {
-                  this.finishGame = true
-                  this.flgRecord = true
+                  this.finishGame = true;
+                  this.flgRecord = true;
                   console.log(this.numberTouches, this.record);
                   if(this.numberTouches < this.record) {
                     this.record = this.numberTouches;
@@ -138,6 +139,8 @@ export class InitialComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("onsubmit")
+    this.newGame(this.form.value.level)
+    this.flgTouches = true;
+    this.flgForm = false;
   }  
 }
