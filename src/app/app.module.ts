@@ -6,21 +6,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InitialComponent } from './pages/initial/initial.component';
 import { HudComponent } from './components/hud/hud.component';
-import { TopBannerComponent } from './components/topBanner.component';
-
+import { AdsenseModule } from 'ng2-adsense';
 
 @NgModule({
   declarations: [
     AppComponent,
     InitialComponent,
     HudComponent,
-    TopBannerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdsenseModule.forRoot({
+      adClient: 'ca-pub-7640562161899788',
+      adSlot: 7259870550,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
