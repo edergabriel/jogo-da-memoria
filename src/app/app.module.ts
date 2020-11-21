@@ -6,12 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InitialComponent } from './pages/initial/initial.component';
 import { HudComponent } from './components/hud/hud.component';
+import { TopBannerComponent } from './components/topBanner.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     InitialComponent,
-    HudComponent
+    HudComponent,
+    TopBannerComponent
   ],
   imports: [
     BrowserModule,

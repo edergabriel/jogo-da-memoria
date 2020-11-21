@@ -1,24 +1,35 @@
-<h1>Jogo da Memória</h1>
+<div class="modal" *ngIf="finishGame">
+  <div class="container">
+      <h2>Parabéns!</h2>
+      <p>Você concluiu em {{ numberTouches }} toques.</p>
 
-<h2>Uma versão do famoso jogo da memória</h2>
+      <button class="btn-backMenu" (click)="backToMenu()">Menu</button>
+      <button class="btn-playAgain" (click)="playAgain()">De Novo!</button>
+  </div>
+</div>
+<header>
+  <h1>Jogo da Memória</h1>
+  <h2>Uma versão do famoso jogo da memória!</h2>
+  <p>O objetivo é formar todos os pares.</p>
+</header>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="flgForm">
+  <!--<label><input type="radio" formControlName="level" name="level" value="100"> Mestre</label>-->
+
+  <h3>Tipos de Cartas</h3>
+  <label><input type="radio" formControlName="cards" name="cards" value="lettersAZ"> Letras (A-Z)</label>
+  <label><input type="radio" formControlName="cards" name="cards" value="lettersAll"> Letras Diversas</label>
+  <label><input type="radio" formControlName="cards" name="cards" value="numbers"> Números</label>
   <h3>Dificuldade</h3>
   <label><input type="radio" formControlName="level" name="level" value="10"> Fácil</label>
   <label><input type="radio" formControlName="level" name="level" value="30"> Médio</label>
   <label><input type="radio" formControlName="level" name="level" value="50"> Difícil</label>
-  <!--<label><input type="radio" formControlName="level" name="level" value="100"> Mestre</label>-->
-
-  <h3>Tipos de Cartas</h3>
-  <label><input type="radio" formControlName="cards" name="cards" value="letters"> Letras</label>
-  <label><input type="radio" formControlName="cards" name="cards" value="numbers"> Números</label>
   <br>
-  <button type="submit">Confirmar</button>
+  <button type="submit" class="btn-play">Jogar</button>
 
-  <!--<pre>{{ form.value | json }}</pre>-->
 </form>
 
-<div class="cards">
+<div class="cards" *ngIf="flgCards">
     <button class="card" href="#" (click)="handleClick($event)" [attr.data-type]="position.type" *ngFor="let position of positions; index as i">
       <div class="card__face card__face--front">{{ position.title }}</div>
       <div class="card__face card__face--back"><div></div></div>
@@ -33,3 +44,5 @@
     <span>{{ record }}</span> Seu Recorde
   </div>
 </div> 
+
+<!--<pre>{{ form.value | json }}</pre>-->
